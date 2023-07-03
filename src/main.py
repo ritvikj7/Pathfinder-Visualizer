@@ -3,8 +3,7 @@
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 
-from map.Node import Node
-from map.Map import Map
+from .Screen import screen
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 
@@ -19,8 +18,8 @@ map_obj = Map()
 
 for i in range(9):
     for j in range(9):
-        print(map_obj.get_array()[i][j].x)
-        print(map_obj.get_array()[i][j].y)
+        print("("+str(map_obj.get_array()[i][j].x)+" "+str(map_obj.get_array()[i][j].y)+")")
+
 
 map_obj.create_block(0, 2);
 
