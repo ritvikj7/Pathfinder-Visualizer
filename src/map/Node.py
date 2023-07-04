@@ -4,8 +4,10 @@ class Node:
     # There will be 4 classification to a node: regular nodes, start node, end node, and blocked node
     # Do we possibly want to change free to state?
     # If state is false, then the node is free otherwise it is blocked
-    def __init__(self, state, x, y, classification, distance=float('inf')):
-        self.state = state
+
+    def __init__(self, state, x, y, classification):
+        self.free = state
+
         self.x = x
         self.y = y
         self.classification = classification
@@ -15,10 +17,10 @@ class Node:
         return self.distance < other.distance
 
     def free_node(self):
-        self.state = False
+        self.free = True
 
     def block_node(self):
-        self.state = True
+        self.free = False
 
     # might not need
     def set_classification(self, classification):
@@ -37,7 +39,7 @@ class Node:
         return self.y
 
     def get_state(self):
-        return self.state
+        return self.free
 
     def get_classification(self):
         return self.classification

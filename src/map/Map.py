@@ -16,9 +16,9 @@ class Map:
 
     def setup(self):
         # width, arbitrary value
-        cols = 3
+        cols = 10
         # height, arbitrary value
-        rows = 3
+        rows = 10
 
         array = [[Node(True, 0, 0, "regular") for y in range(cols)] for x in range(rows)]
 
@@ -32,14 +32,7 @@ class Map:
                 array[i][j].x = j
                 array[i][j].y = i
 
-    def create_block(self, x, y):
-        self.node_array[x][y].block_node()
 
-    def free_block(self, x, y):
-        self.node_array[x][y].free_node()
-
-    def change_classification(self, x, y, classification):
-        self.node_array[x][y].set_classification(classification)
 
     def get_array(self):
         return self.node_array

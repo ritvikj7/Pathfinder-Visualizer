@@ -3,22 +3,67 @@ import tkinter as tk
 import matplotlib.pyplot as plt
 
 
-class Screen:
-    def __int__(self):
-        pass
+from PyQt5.QtWidgets import QApplication, QMainWindow, QGraphicsScene, QGraphicsView, QGraphicsEllipseItem, \
+    QGraphicsRectItem
+from PyQt5.QtGui import QBrush, QColor, QPen
+from PyQt5.QtCore import Qt, QPointF
 
-    def showscreen(self, map_obj):
-        root = tk.Tk()
-        root.title("Matrix Visualization")
+class Screen(QMainWindow):
+    def __init__(self, map_obj):
+        super().__init__()
 
-        # Create a canvas to draw the matrix
-        canvas = tk.Canvas(root, width=500, height=500)
-        canvas.pack()
+        self.setWindowTitle("Matrix Visualization")
 
-        # Draw the matrix on the canvas
-        for i in range(500):
-            for j in range(500):
-                if(map_obj.get_array()[i][j].)
-                canvas.create_oval(map_obj.get_array()[i][j].x - 5, map_obj.get_array()[i][j].y - 5, map_obj.get_array()[i][j].x + 5, map_obj.get_array()[i][j].y + 5, fill="black")
+        self.scene = QGraphicsScene()
+        self.view = QGraphicsView(self.scene)
 
-        root.mainloop()
+        self.setCentralWidget(self.view)
+
+        self.map_obj = map_obj
+
+        self.num_rows = 10
+        self.num_cols = 10
+
+        # Calculate the size of each box
+        self.box_width = self.view.width() / self.num_cols
+        self.box_height = self.view.height() / self.num_rows
+
+        self.draw_matrix()
+
+        self.view.mousePressEvent = self.on_mouse_press
+
+
+
+    def draw_matrix(self):
+
+        for i in range(self.num_rows):
+            for j in range(self.num_cols):
+                x = j * self.box_width  # Calculate the x-coordinate of the box
+                y = i * self.box_height  # Calculate the y-coordinate of the box
+
+                brush = QBrush(Qt.white)
+                pen = QPen(Qt.NoPen)
+
+                self.scene.addRect(x, y, self.box_width, self.box_height, pen, brush)
+
+    def on_mouse_press(self, event):
+        mouse_pos = event.pos()
+        scene_pos = self.view.mapToScene(mouse_pos)
+
+        x = int(scene_pos.x() // self.box_width)  # Calculate the index of the clicked box in the x-axis
+        y = int(scene_pos.y() // self.box_height)  # Calculate the index of the clicked box in the y-axis
+
+        print("Clicked at index: ({}, {})".format(x, y))
+
+
+        clicked_item = self.scene.itemAt(scene_pos, self.view.transform())
+
+        if isinstance(clicked_item, QGraphicsRectItem):
+            if self.map_obj.get_array()[x][y].free:
+                self.map_obj.get_array()[x][y].block_node()
+                print(self.map_obj.get_array()[x][y].free)
+                clicked_item.setBrush(QBrush(Qt.black))
+            else:
+                self.map_obj.get_array()[x][y].free_node()
+                print(self.map_obj.get_array()[x][y].free)
+                clicked_item.setBrush(QBrush(Qt.white))
