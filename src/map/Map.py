@@ -9,9 +9,9 @@ class Map:
 
     def setup(self):
         # width, arbitrary value
-        cols = 9
+        cols = 500
         # height, arbitrary value
-        rows = 9
+        rows = 500
         array = [[Node(True, 0, 0, "regular") for y in range(cols)] for x in range(rows)]
 
         self.fill_array(array, cols, rows)
