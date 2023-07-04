@@ -1,6 +1,6 @@
-
 from .Node import Node
 import random
+
 
 class Map:
 
@@ -18,16 +18,13 @@ class Map:
         cols = 10
         # height, arbitrary value
         rows = 10
-        #filling the array
-        array = [[Node(True, x, y, "head",0) if x == headx and y==heady else Node(True, x, y, "tail",0) if x == tailx and y==taily else Node(True, x, y, "block",0)
+        # filling the array
+        array = [[Node(True, x, y, "head", 0) if x == headx and y == heady else Node(True, x, y, "tail",
+                                                                                     0) if x == tailx and y == taily else Node(
+            True, x, y, "block", 0)
                   for x in range(cols)] for y in range(rows)]
 
-        for i in range(rows):
-            for j in range(cols):
-                array[i][j].x = j
-                array[i][j].y = i
-
-
+        return array
 
     def get_array(self):
         return self.node_array
