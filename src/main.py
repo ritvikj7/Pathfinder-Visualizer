@@ -5,6 +5,8 @@
 
 from map.Node import Node
 from map.Map import Map
+from algorithms.Dijkstras import Dijkstras
+
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 
@@ -13,15 +15,8 @@ from map.Map import Map
 
 map_obj = Map()
 
-# print(map_obj.get_array())
+dijkstras_obj = Dijkstras(2, 2, map_obj.get_array())
 
-# print("x: " + map_obj.get_array()[i][j].x + " " + "y: " + map_obj.get_array()[i][j].y)
+distances = dijkstras_obj.dijkstras()
+print(distances)
 
-for i in range(9):
-    for j in range(9):
-        print(map_obj.get_array()[i][j].x)
-        print(map_obj.get_array()[i][j].y)
-
-map_obj.create_block(0, 2);
-
-print(map_obj.get_array()[0][2].get_state())
