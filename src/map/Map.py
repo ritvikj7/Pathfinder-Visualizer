@@ -19,6 +19,7 @@ class Map:
         cols = 3
         # height, arbitrary value
         rows = 3
+
         array = [[Node(True, 0, 0, "regular") for y in range(cols)] for x in range(rows)]
 
         self.fill_array(array, cols, rows)
