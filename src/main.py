@@ -3,10 +3,7 @@
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 
-from map.Node import Node
-from map.Map import Map
-from algorithms.Dijkstras import Dijkstras
-
+from .Screen import screen
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 
@@ -15,8 +12,15 @@ from algorithms.Dijkstras import Dijkstras
 
 map_obj = Map()
 
-dijkstras_obj = Dijkstras(2, 2, map_obj.get_array())
+# print(map_obj.get_array())
 
-distances = dijkstras_obj.dijkstras()
-print(distances)
+# print("x: " + map_obj.get_array()[i][j].x + " " + "y: " + map_obj.get_array()[i][j].y)
 
+for i in range(9):
+    for j in range(9):
+        print("("+str(map_obj.get_array()[i][j].x)+" "+str(map_obj.get_array()[i][j].y)+")")
+
+
+map_obj.create_block(0, 2);
+
+print(map_obj.get_array()[0][2].get_state())
