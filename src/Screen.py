@@ -1,10 +1,8 @@
 
-import tkinter as tk
-import matplotlib.pyplot as plt
 
 
 from PyQt5.QtWidgets import QApplication, QMainWindow, QGraphicsScene, QGraphicsView, QGraphicsEllipseItem, \
-    QGraphicsRectItem
+QGraphicsRectItem, QToolBar, QAction
 from PyQt5.QtGui import QBrush, QColor, QPen
 from PyQt5.QtCore import Qt, QPointF
 
@@ -29,8 +27,19 @@ class Screen(QMainWindow):
         self.box_height = self.view.height() / self.num_rows
 
         self.draw_matrix()
-
+        self.create_toolbar()
         self.view.mousePressEvent = self.on_mouse_press
+
+
+    def create_toolbar(self):
+        toolbar = QToolBar()
+        self.addToolBar(toolbar)
+
+        action1 = QAction("Action 1", self)
+        toolbar.addAction(action1)
+
+        action2 = QAction("Action 2", self)
+        toolbar.addAction(action2)
 
 
 
@@ -59,7 +68,7 @@ class Screen(QMainWindow):
         clicked_item = self.scene.itemAt(scene_pos, self.view.transform())
 
         if isinstance(clicked_item, QGraphicsRectItem):
-            if self.map_obj.get_array()[x][y].free:
+            if self.map_obj.get_array()[x][y].free and self.map_obj.get_array()[x][y].classification == "regular":
                 self.map_obj.get_array()[x][y].block_node()
                 print(self.map_obj.get_array()[x][y].free)
                 clicked_item.setBrush(QBrush(Qt.black))
