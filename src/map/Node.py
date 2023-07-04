@@ -7,7 +7,6 @@ class Node:
 
     def __init__(self, state, x, y, classification, distance):
         self.free = state
-
         self.x = x
         self.y = y
         self.classification = classification
