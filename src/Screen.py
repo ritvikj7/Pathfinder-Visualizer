@@ -114,6 +114,7 @@ class Screen(QMainWindow):
                     # Update the position of the rectangle item
                     clicked_item.setRect(x * self.box_width, y * self.box_height, self.box_width, self.box_height)
                     clicked_item.setBrush(QBrush(Qt.green))
+
             elif self.map_obj.get_array()[x][y].free and self.map_obj.get_array()[x][y].classification == "block":
                 self.map_obj.get_array()[x][y].block_node()
                 print(self.map_obj.get_array()[x][y].free)
