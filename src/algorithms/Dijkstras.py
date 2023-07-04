@@ -9,9 +9,9 @@ import heapq
 
 class Dijkstras:
 
-    def __init__(self, x, y, grid):
-        self.start_x = x
-        self.start_y = y
+    def __init__(self, start_x, start_y, grid):
+        self.start_x = start_x
+        self.start_y = start_y
         self.grid = grid
 
     # Will need to initialize a few arrays: visited nodes, distance from node
@@ -29,8 +29,15 @@ class Dijkstras:
 
         movements = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
+        # In the case of Dijkstra's algorithm, the use of a visited node check is not necessary.
+        # This is because Dijkstra's algorithm guarantees that once a node is visited and its
+        # distance is finalized, it will not be revisited or updated with a shorter distance.
+
         while priority_queue:
             current_node = heapq.heappop(priority_queue)
+
+            # I think all I need to do to get the return value from starting point to destination is have
+            # a conditional statement here that checks if we have visited the current_node
 
             for dx, dy in movements:
                 new_x = current_node.x + dx
