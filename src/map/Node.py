@@ -5,7 +5,7 @@ class Node:
     # Do we possibly want to change free to state?
     # If state is false, then the node is free otherwise it is blocked
 
-    def __init__(self, state, x, y, classification):
+    def __init__(self, state, x, y, classification, distance):
         self.free = state
 
         self.x = x
