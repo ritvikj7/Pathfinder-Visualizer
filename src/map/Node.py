@@ -5,16 +5,16 @@ class Node:
     # Do we possibly want to change free to state?
     # If state is false, then the node is free otherwise it is blocked
     def __init__(self, state, x, y, classification):
-        self.state = state
+        self.free = state
         self.x = x
         self.y = y
         self.classification = classification
 
     def free_node(self):
-        self.state = False
+        self.free = True
 
     def block_node(self):
-        self.state = True
+        self.free = False
 
     # might not need
     def set_classification(self, classification):
@@ -27,7 +27,7 @@ class Node:
         return self.y
 
     def get_state(self):
-        return self.state
+        return self.free
 
     def get_classification(self):
         return self.classification
