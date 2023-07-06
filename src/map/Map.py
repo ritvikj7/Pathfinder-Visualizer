@@ -19,12 +19,16 @@ class Map:
         # height, arbitrary value
         rows = 10
         # filling the array
-        array = [[Node(True, x, y, "head", 0) if x == headx and y == heady else Node(True, x, y, "tail",
-                                                                                     0) if x == tailx and y == taily else Node(
-            True, x, y, "block", 0)
-                  for x in range(cols)] for y in range(rows)]
+
+
+        array = [[Node(True, x, y, "block", 0) for x in range(cols)] for y in range(rows)]
+
+
 
         return array
+
+    # Remember that we are looking at it from the point of (x, y) where (0, 0) is the top left corner of the grid
+
 
     def get_array(self):
         return self.node_array
