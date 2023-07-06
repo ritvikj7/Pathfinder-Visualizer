@@ -19,10 +19,7 @@ class Map:
         # height, arbitrary value
         rows = 10
         # filling the array
-        array = [[Node(True, x, y, "head", 0) if x == headx and y == heady else Node(True, x, y, "tail",
-                                                                                     0) if x == tailx and y == taily else Node(
-            True, x, y, "block", 0)
-                  for x in range(cols)] for y in range(rows)]
+        array = [[Node(True, x, y, "block", 0) for x in range(cols)] for y in range(rows)]
 
         for i in range(rows):
             for j in range(cols):
