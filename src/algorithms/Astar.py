@@ -37,6 +37,7 @@ class Astar:
 
         while priority_queue:
             current_node = heapq.heappop(priority_queue)
+            print(current_node.x, current_node.y)
 
             if current_node.x == self.target_x and current_node.y == self.target_y:
                 break
@@ -47,14 +48,19 @@ class Astar:
 
                 if 0 <= new_x < num_rows and 0 <= new_y < num_cols:
                     new_distance = self.calculate_distance(current_node.distance)
-                    heuristic = self.calculate_heuristic(new_x, new_y)
-                    total_cost = new_distance + heuristic
 
                     if self.grid[new_x][new_y].get_state():
-                        # Need to think deeply about what is actually happening here, that is leading us to having
-                        # the same results
-                        if total_cost < distances[new_x][new_y]:
+                        if new_distance < distances[new_x][new_y]:
                             distances[new_x][new_y] = new_distance
                             heapq.heappush(priority_queue, Node(True, new_x, new_y, "Block", new_distance))
+                            self.sort_priority_queue(priority_queue)
 
         return distances
+
+    def sort_priority_queue(self, pq):
+        pq.sort(key=lambda node: (node.distance + self.calculate_heuristic(node.x, node.y)))
+
+
+
+
+

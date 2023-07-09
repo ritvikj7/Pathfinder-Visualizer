@@ -31,6 +31,9 @@ class Dijkstras:
         while priority_queue:
             current_node = heapq.heappop(priority_queue)
 
+            # There are 2 possible implementations:
+            # First: Stopping the Algorithm when we initially update the distance or
+            # Second: Stopping the Algorithm when we pop the node off the heap
             if current_node.x == self.target_x and current_node.y == self.target_y:
                 break
 
@@ -42,8 +45,6 @@ class Dijkstras:
                     new_distance = self.calculate_distance(current_node.distance)
 
                     if self.grid[new_x][new_y].get_state():
-                        # Need to think deeply about what is actually happening here, that is leading us to having
-                        # the same results
                         if new_distance < distances[new_x][new_y]:
                             distances[new_x][new_y] = new_distance
                             heapq.heappush(priority_queue, Node(True, new_x, new_y, "block", new_distance))
