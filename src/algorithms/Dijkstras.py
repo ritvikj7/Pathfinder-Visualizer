@@ -24,13 +24,12 @@ class Dijkstras:
         distances[self.start_x][self.start_y] = 0
 
         priority_queue = []
-        heapq.heappush(priority_queue, Node(False, self.start_x, self.start_y, 'regular', 0))
+        heapq.heappush(priority_queue, self.grid[self.start_x][self.start_y])
 
         movements = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
         while priority_queue:
             current_node = heapq.heappop(priority_queue)
-            print(current_node.x, current_node.y)
 
             if current_node.x == self.target_x and current_node.y == self.target_y:
                 break
@@ -42,10 +41,11 @@ class Dijkstras:
                 if 0 <= new_x < num_rows and 0 <= new_y < num_cols:
                     new_distance = self.calculate_distance(current_node.distance)
 
-                    # Need to think deeply about what is actually happening here, that is leading us to having
-                    # the same results
-                    if new_distance < distances[new_x][new_y]:
-                        distances[new_x][new_y] = new_distance
-                        heapq.heappush(priority_queue, Node(False, new_x, new_y, "regular", new_distance))
+                    if self.grid[new_x][new_y].get_state():
+                        # Need to think deeply about what is actually happening here, that is leading us to having
+                        # the same results
+                        if new_distance < distances[new_x][new_y]:
+                            distances[new_x][new_y] = new_distance
+                            heapq.heappush(priority_queue, Node(True, new_x, new_y, "block", new_distance))
 
         return distances

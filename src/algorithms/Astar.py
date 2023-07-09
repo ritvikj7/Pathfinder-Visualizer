@@ -37,7 +37,7 @@ class Astar:
 
         while priority_queue:
             current_node = heapq.heappop(priority_queue)
-            print(current_node.x, current_node.y)
+            # print(current_node.x, current_node.y)
 
             if current_node.x == self.target_x and current_node.y == self.target_y:
                 break

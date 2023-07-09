@@ -1,7 +1,7 @@
 class Node:
 
     # The basic idea is that the map will be  made up of a list of nodes
-    # There will be 4 classification to a node: regular nodes, start node, end node, and blocked node
+    # There will be 4 classification to a node: block, head, tail
     # Do we possibly want to change free to state?
     # If state is false, then the node is free otherwise it is blocked
 
