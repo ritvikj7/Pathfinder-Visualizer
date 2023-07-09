@@ -1,11 +1,9 @@
-
-
-
+import PyQt5
 from PyQt5.QtWidgets import QApplication, QMainWindow, QGraphicsScene, QGraphicsView, QGraphicsEllipseItem, \
     QGraphicsRectItem, QToolBar, QAction, QPushButton, QGraphicsTextItem
 from PyQt5.QtGui import QBrush, QColor, QPen, QFont
 from PyQt5.QtCore import Qt, QPointF, QPoint
-
+from math import fabs,sqrt
 
 class Screen(QMainWindow):
     def __init__(self, map_obj):
@@ -92,8 +90,17 @@ class Screen(QMainWindow):
                     if self.headpos:
                         head_item = self.scene.itemAt(self.headpos, self.view.transform())
                         self.map_obj.get_array()[int(self.headpos.x() // self.box_width)][int(self.headpos.y() // self.box_height)].set_classification("block")
-                        head_item.setBrush(QBrush(Qt.white))
+
+                        if isinstance(head_item, QGraphicsRectItem):
+                            head_item.setBrush(QBrush(Qt.white))
                         # text for head
+
+                        else:
+                            b = self.headpos.y()+20
+                            head_item2 = self.scene.itemAt(self.headpos.x(),b, self.view.transform())
+                            head_item2.setBrush(QBrush(Qt.white))
+
+
 
                     else:
                         self.head_text_item = self.scene.addText("Head", QFont("Arial", 10))
@@ -115,7 +122,15 @@ class Screen(QMainWindow):
                         tail_item = self.scene.itemAt(self.tailpos, self.view.transform())
                         self.map_obj.get_array()[int(self.tailpos.x() // self.box_width)][int(self.tailpos.y() // self.box_height)].set_classification("block")
                         tail_item.setBrush(QBrush(Qt.white))
+                        # text for tail
+                        if isinstance(tail_item, QGraphicsRectItem):
+                            tail_item.setBrush(QBrush(Qt.white))
                         # text for head
+
+                        else:
+                            b = self.tailpos.y()+20
+                            tail_item2 = self.scene.itemAt(self.tailpos.x(),b, self.view.transform())
+                            tail_item2.setBrush(QBrush(Qt.white))
 
                     else:
                         self.tail_text_item = self.scene.addText("Tail", QFont("Arial", 10))
