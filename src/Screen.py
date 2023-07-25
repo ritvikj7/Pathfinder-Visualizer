@@ -95,7 +95,7 @@ class Screen(QMainWindow):
 
                         if isinstance(head_item, QGraphicsRectItem):
                             head_item.setBrush(QBrush(Qt.white))
-                        # text for head
+
 
                         else:
                             b = self.headpos.y()+20
