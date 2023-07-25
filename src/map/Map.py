@@ -20,15 +20,11 @@ class Map:
         rows = 10
         # filling the array
 
-
         array = [[Node(True, x, y, "block", 0) for x in range(cols)] for y in range(rows)]
-
-
 
         return array
 
     # Remember that we are looking at it from the point of (x, y) where (0, 0) is the top left corner of the grid
-
 
     def get_array(self):
         return self.node_array
